@@ -20,6 +20,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <style type="text/css">
+        .footer{
+            background-color: #1E88FF;
+            width: 100%;
+            height: 70px;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -77,6 +88,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
+    <div class="footer">
+        Copyright Kudou.com @2019
     </div>
 </body>
 </html>
