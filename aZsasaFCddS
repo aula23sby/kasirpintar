@@ -1,0 +1,43 @@
+warning: LF will be replaced by CRLF in privasi/routes/web.php.
+The file will have its original line endings in your working directory
+[1mdiff --git a/privasi/resources/js/components/Update.vue b/privasi/resources/js/components/Update.vue[m
+[1mindex 728b6b0..a79aae1 100644[m
+[1m--- a/privasi/resources/js/components/Update.vue[m
+[1m+++ b/privasi/resources/js/components/Update.vue[m
+[36m@@ -3,7 +3,7 @@[m
+         <div class="row justify-content-center">[m
+             <div class="col-md-8">[m
+                 <div class="card">[m
+[31m-                    <div class="card-header">Update Post</div>[m
+[32m+[m[32m                    <div class="card-header">Updated Post</div>[m
+ [m
+                     <div class="card-body">[m
+                         <form @submit="submitPostEdit()" enctype="multipart/form-data">[m
+[1mdiff --git a/privasi/resources/views/layouts/app.blade.php b/privasi/resources/views/layouts/app.blade.php[m
+[1mindex 1a821b6..c782400 100644[m
+[1m--- a/privasi/resources/views/layouts/app.blade.php[m
+[1m+++ b/privasi/resources/views/layouts/app.blade.php[m
+[36m@@ -61,6 +61,9 @@[m
+                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>[m
+                                 </li>[m
+                             @endif[m
+[32m+[m[32m                            <li class="nav-item">[m
+[32m+[m[32m                                <a class="nav-link" href="{{ url('gits') }}">GIT</a>[m
+[32m+[m[32m                            </li>[m
+                         @else[m
+                             <li class="nav-item dropdown">[m
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>[m
+[1mdiff --git a/privasi/routes/web.php b/privasi/routes/web.php[m
+[1mindex 74dc722..583ed3d 100644[m
+[1m--- a/privasi/routes/web.php[m
+[1m+++ b/privasi/routes/web.php[m
+[36m@@ -18,6 +18,9 @@[m [mRoute::get('/', function () {[m
+ Route::get('/vue', function () {[m
+     return view('vue');[m
+ });[m
+[32m+[m[32mRoute::get('/gits', function () {[m
+[32m+[m[32m    return view('pagegit');[m
+[32m+[m[32m});[m
+ Route::get('/kalkulator', function () {[m
+     return view('kalkulator');[m
+ });[m
