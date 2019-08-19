@@ -5,6 +5,6 @@
 </head>
 <body>
 Mari kita belajar git
-ini berada pada cabang master
+ini berada pada cabang master dan footer
 </body>
 </html>
