@@ -4,6 +4,7 @@
 	<title>GIT</title>
 </head>
 <body>
-Yeyy belajar GIT
+Mari kita belajar git
+ini berada pada cabang master
 </body>
 </html>
