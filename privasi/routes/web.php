@@ -25,7 +25,7 @@ Route::get('/kalkulator', function () {
     return view('kalkulator');
 });
 Auth::routes();
-
+Route::get('/sqlserver', 'VueController@server');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'PostController@homepage')->name('homepage');
 
