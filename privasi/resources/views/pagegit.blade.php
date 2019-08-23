@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>GIT</title>
-</head>
-<body>
-Mari kita belajar git
-ini berada pada cabang master dan footer
+@extends('layouts.app')
 
-sekarang kit mencaba pada github
-</body>
-</html>
+@section('content')
+<div class="container">
+  <h2>Striped Rows</h2>
+  <p>The .table-striped class adds zebra-stripes to a table:</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Jabatan</th>
+        <th>Umur</th>
+        <th>Alamat</th>
+      </tr>
+    </thead>
+    <tbody>
+    	@php $i=1; @endphp
+    	@foreach($people as $peoples)
+      <tr>
+        <td>{{$i++}}</td>
+        <td>{{$peoples->nama_pegawai}}</td>
+        <td>{{$peoples->jabatan_pegawai}}</td>
+        <td>{{$peoples->umur_pegawai}}</td>
+        <td>{{$peoples->alamat_pegawai}}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
+@endsection
