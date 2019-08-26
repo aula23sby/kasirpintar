@@ -25,10 +25,16 @@
         .footer{
             background-color: #1E88FF;
             width: 100%;
-            height: 70px;
+           
             color: white;
             text-align: center;
             padding: 15px;
+            min-height: 50px; 
+        }
+        .content{
+            margin-top: 5px;
+            min-height: 500px;
+            overflow: auto;
         }
     </style>
 </head>
@@ -88,7 +94,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
             @yield('content')
         </main>
     </div>

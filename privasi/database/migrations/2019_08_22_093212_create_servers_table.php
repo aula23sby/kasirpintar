@@ -16,7 +16,7 @@ class CreateServersTable extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->bigIncrements('id_pegawai');
             $table->string('nama_pegawai');
-            $table->string('jabatan_peawai');
+            $table->string('jabatan_pegawai');
             $table->string('umur_pegawai');
             $table->string('alamat_pegawai');
             $table->timestamps();

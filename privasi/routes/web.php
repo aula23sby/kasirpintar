@@ -41,6 +41,13 @@ Route::group("prefix"=>"sqlserver", function () {
 Route::prefix('sqlserver')->group(function () {
 	Route::get("/about", "VueController@about")->middleware('check_credential');
     Route::get("/server", "VueController@server");
-    Route::get('/pegawai', 'VueController@data_pegawai');
-    
+    Route::prefix('pegawai')->group(function () {
+	    Route::get('/', 'VueController@data_pegawai');
+	    Route::get('/cari', 'VueController@cari_pegawai');
+	    Route::get('/tambah', function () {
+		    return view('pegawai.tambah');
+		});
+		Route::post('/simpan', 'VueController@simpan_pegawai');
+		Route::get('/edit/{id}', 'VueController@edit_pegawai');
+	});
 });

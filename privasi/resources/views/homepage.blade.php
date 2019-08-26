@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="content">
    <div class="jumbotron">
     <div class="text-center">
         <h1>http://Kudou.com</h1>
