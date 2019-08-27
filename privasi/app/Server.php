@@ -3,15 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Server extends Model
 {
-    //
-    //protected $table = "pemakai";
-	//protected $fillable = ['id'.'nama', 'email','password'];
-
+	use SoftDeletes;
 	protected $table = "servers";
 	protected $primaryKey = 'id_pegawai';
-	//protected $fillable = ['id_pegawai','nama_pegawai','jabatan_pegawai','umur_pegawai','alamat_pegawai'];
 	protected $guarded = []; //fillable all
+	protected $dates = ['deleted_at'];
+	public function post(){
+		return $this->hasOne('App\Post', 'id_pelamar', 'id_pegawai');
+	}
 }

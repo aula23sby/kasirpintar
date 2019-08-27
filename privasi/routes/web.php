@@ -49,5 +49,12 @@ Route::prefix('sqlserver')->group(function () {
 		});
 		Route::post('/simpan', 'VueController@simpan_pegawai');
 		Route::get('/edit/{id}', 'VueController@edit_pegawai');
+		Route::put('/update/{id}', 'VueController@update_pegawai');
+		Route::get('/hapus/{id}', 'VueController@hapus_pegawai');
+		Route::get('/trash', 'VueController@trash_pegawai');
+		Route::get('/restore/{id}', 'VueController@restore_pegawai');
+		Route::get('/delete/{id}', 'VueController@delete_pegawai');
+		Route::get('/restoreall', 'VueController@restores_pegawai');
+		Route::get('/deleteall', 'VueController@deletes_pegawai');
 	});
 });

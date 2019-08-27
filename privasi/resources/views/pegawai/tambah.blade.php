@@ -4,23 +4,15 @@
 
   <div class="row justify-content-center content">
     <div class="col-lg-6">
- <!--     
- @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-             @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-             @endforeach
-        </ul>
-    </div>
-@endif
--->
       <div class="card">
         <div class="card-body">  
           <h2>{{ isset($people) ? 'Edit' : 'Tambah' }} Data Calon Pelamar</h2>
           <p>{{ isset($people) ? 'Edit' : 'Tambah' }} data pelamar pada PT SBG Solution:</p>
-          <form method="POST" action="{{ action('VueController@simpan_pegawai') }}">       
+          <form method="POST" action="{{ isset($people) ? action('VueController@update_pegawai', ['id_pegawai'=>$people->id_pegawai]) : action('VueController@simpan_pegawai') }}">       
             @csrf
+            @if(isset($people))
+            @method('PUT')
+            @endif
             <div class="form-group">
               <label>Nama:</label>
               <input type="text" class="form-control @if ($errors->has('nama_pegawai')) is-invalid @endif" name="nama_pegawai" value="{{ old('nama_pegawai',isset($people) ? $people->nama_pegawai : '') }}">
@@ -42,7 +34,7 @@
               <div class="invalid-feedback">{{$errors->first('alamat_pegawai')}}</div>
             </div>
             <a href="{{ URL('sqlserver/pegawai')}}" class="btn btn-danger text-white">Kembali</a>
-            <button type="submit" class="btn btn-primary float-right">Tambah</button>
+            <button type="submit" class="btn btn-primary float-right">{{isset($people) ? 'Edit' : 'Tambah'}}</button>
           </form> 
         </div>
       </div> <!-- end card -->
