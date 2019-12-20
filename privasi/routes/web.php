@@ -10,51 +10,48 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
+
 Route::get('/', function () {
-    return view('welcome');
-});*/
+    return view('homepage');
+});
 
-Route::get('/vue', function () {
-    return view('vue');
-});
-Route::get('/gits', function () {
-    return view('pagegit');
-});
-Route::get('/kalkulator', function () {
-    return view('kalkulator');
-});
+
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'PostController@homepage')->name('homepage');
+Route::get('/logoutuser', 'Auth\LoginController@logoutUser')->name('user.logout');
 
-Route::resource('/posts', 'PostController');
 
-Route::get('/sqlserver', 'VueController@index');
-//Route::group(["prefix"=>"sqlserver", "middleware"=>["check_credential"]], function () {
-/*
-Route::group("prefix"=>"sqlserver", function () {
-    Route::get(["/about", "VueController@about", "middleware"=>["check_credential"]]);
-    Route::get("/server", "VueController@server");
-    Route::get("/pegawai", "VueController@data_pegawai");
-});*/
-Route::prefix('sqlserver')->group(function () {
-	Route::get("/about", "VueController@about")->middleware('check_credential');
-    Route::get("/server", "VueController@server");
-    Route::prefix('pegawai')->group(function () {
-	    Route::get('/', 'VueController@data_pegawai');
-	    Route::get('/cari', 'VueController@cari_pegawai');
-	    Route::get('/tambah', function () {
-		    return view('pegawai.tambah');
-		});
-		Route::post('/simpan', 'VueController@simpan_pegawai');
-		Route::get('/edit/{id}', 'VueController@edit_pegawai');
-		Route::put('/update/{id}', 'VueController@update_pegawai');
-		Route::get('/hapus/{id}', 'VueController@hapus_pegawai');
-		Route::get('/trash', 'VueController@trash_pegawai');
-		Route::get('/restore/{id}', 'VueController@restore_pegawai');
-		Route::get('/delete/{id}', 'VueController@delete_pegawai');
-		Route::get('/restoreall', 'VueController@restores_pegawai');
-		Route::get('/deleteall', 'VueController@deletes_pegawai');
-	});
+Route::prefix('admin')->group(function () {
+	Route::get('/', 'BarangController@index')->name('admin.home');
+	Route::get('/login', 'AuthAdmin\LoginController@showLoginForm')->name('admin.login');
+	Route::post('/login', 'AuthAdmin\LoginController@login')->name('admin.login.submit');
+	Route::get('/register', 'AuthAdmin\LoginController@showRegisterForm')->name('admin.register');
+	Route::post('/register', 'AuthAdmin\LoginController@register')->name('admin.register.submit');
+	Route::get('/logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');
+	Route::post('/add', 'BarangController@add')->name('admin.add');
+	Route::post('/update', 'BarangController@update')->name('admin.update');
+	Route::get('/delete/{kode}', 'BarangController@delete')->name('admin.delete');
+});
+Route::prefix('owner')->group(function () {
+	Route::get('/', 'BarangController@index')->name('owner.home');
+	Route::get('/login', 'AuthOwner\LoginController@showLoginForm')->name('owner.login');
+	Route::post('/login', 'AuthOwner\LoginController@login')->name('owner.login.submit');
+	Route::get('/register', 'AuthOwner\LoginController@showRegisterForm')->name('owner.register');
+	Route::post('/register', 'AuthOwner\LoginController@register')->name('owner.register.submit');
+	Route::get('/logout', 'AuthOwner\LoginController@logout')->name('owner.logout');
+	Route::post('/add', 'BarangController@add')->name('owner.add');
+	Route::post('/update', 'BarangController@update')->name('owner.update');
+	Route::get('/delete/{kode}', 'BarangController@delete')->name('owner.delete');
+});
+Route::prefix('staff')->group(function () {
+	Route::get('/', 'BarangController@index')->name('staff.home');
+	Route::get('/login', 'AuthStaff\LoginController@showLoginForm')->name('staff.login');
+	Route::post('/login', 'AuthStaff\LoginController@login')->name('staff.login.submit');
+	Route::get('/register', 'AuthStaff\LoginController@showRegisterForm')->name('staff.register');
+	Route::post('/register', 'AuthStaff\LoginController@register')->name('staff.register.submit');
+	Route::get('/logout', 'AuthStaff\LoginController@logout')->name('staff.logout');
+	Route::post('/add', 'BarangController@add')->name('staff.add');
+	Route::post('/update', 'BarangController@update')->name('staff.update');
+	Route::get('/delete/{kode}', 'BarangController@delete')->name('staff.delete');
 });

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard User</div>
+                <div class="card-header">Dashboard Admin</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in, admin {{Auth::guard('admin')->user()->name}}!
+                    @if(Auth::guard('admin'))
+                        Hello Admin
+                    @endif
                 </div>
             </div>
         </div>

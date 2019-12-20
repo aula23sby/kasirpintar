@@ -10,32 +10,28 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
+  
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+   
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ URL::asset('css/dataTables.bootstrap.css') }}" />
 
-    <style type="text/css">
-        .footer{
-            background-color: #1E88FF;
-            width: 100%;
-           
-            color: white;
-            text-align: center;
-            padding: 15px;
-            min-height: 50px; 
-        }
-        .content{
-            margin-top: 5px;
-            min-height: 500px;
-            overflow: auto;
-        }
+      <style type="text/css">
+        .top-row { margin-top:10px; }
     </style>
 </head>
 <body>
@@ -43,7 +39,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    TokoKu
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -59,34 +55,39 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <!-- Dropdown -->
+                            <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+                                Login
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('owner.login') }}">Owner</a>
+                                <a class="dropdown-item" href="{{ route('admin.login') }}">Admin</a>
+                                <a class="dropdown-item" href="{{ route('staff.login') }}">Staff</a>
+                              </div>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('gits') }}">GIT</a>
+                             <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+                                Register
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('owner.register') }}">Owner</a>
+                                <a class="dropdown-item" href="{{ route('admin.register') }}">Admin</a>
+                                <a class="dropdown-item" href="{{ route('staff.register') }}">Staff</a>
+                              </div>
                             </li>
+                                        
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
+                                </a>              
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route($guestt.'.logout') }}">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
                                 </div>
+                            
                             </li>
                         @endguest
                     </ul>
@@ -94,12 +95,13 @@
             </div>
         </nav>
 
-        <main class="py-4 container">
+       <main class="py-4">
             @yield('content')
+
+
         </main>
-    </div>
-    <div class="footer">
-        Copyright Kudou.com @2019
-    </div>
+
 </body>
+
+
 </html>
